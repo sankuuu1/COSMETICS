@@ -1,0 +1,193 @@
+// Interactive Resume Website for Sanket Wandile // Single-file React component (default export) // Built with Tailwind CSS utility classes and Framer Motion for animations. // Uses lucide-react for icons. Replace assets/resume.pdf and assets/photo.jpg with your files. // To run: // 1. Create a React app (Vite or Create React App). Install dependencies: //    npm install framer-motion lucide-react // 2. Add Tailwind CSS to the project (follow Tailwind docs). Place this file in src/components/. // 3. Put your resume PDF at public/assets/resume.pdf and your photo at public/assets/photo.jpg // 4. Import and render <ResumeWebsite /> in App.jsx.
+
+import React from 'react'; import { motion } from 'framer-motion'; import { Mail, Phone, Linkedin, Download, Globe } from 'lucide-react';
+
+export default function ResumeWebsite() { // Data extracted from your resume — edit here if you'd like const data = { name: 'Sanket Wandile', title: 'B.Tech Student | Supply Chain & Data Analytics', contact: '+91 8788509011', email: 'sanketwandile7@gmail.com', linkedin: '#', // replace with your LinkedIn URL heroBlurb: 'Highly motivated B.Tech student with hands-on internships in Supply Chain Management, Business Strategy, Product Management and Data Analytics. Skilled in Python, Power BI and building data-driven solutions.', education: [ { school: 'Visvesvaraya National Institute of Technology, Nagpur', degree: 'B.Tech in Metallurgical and Materials Engineering (2023–2027)', meta: 'CGPA: 7.07/10' }, { school: 'St Paul Junior And Senior College, Nagpur', degree: 'Higher Secondary - 2023', meta: 'Percentage: 75.0%' }, { school: 'Modern High School, Umred', degree: 'Secondary - 2021', meta: 'Percentage: 97.6%' } ], experiences: [ { role: 'Research Intern — Supply Chain Management', org: 'IIM Mumbai', date: 'May 2025 - July 2025', bullets: [ 'Analyzed cosmetics industry data using 80/20 framework to identify top SKUs and inventory pullbacks.', 'Developed a Python-based simulation model to validate discount strategies across lifecycles.', 'Quantified inventory reductions (20–95%) and recommended remedial actions.' ] }, { role: "Thapasu Superfood Brand — Rebranding & Marketing", org: 'India', date: 'Dec 2024 - May 2025', bullets: [ 'Led rebranding & social media marketing; performed market & competitor analysis.', 'Worked on SEO and community-driven revenue initiatives.' ] }, { role: 'Feeding India by Zomato — Research & Outreach', org: 'India', date: 'Oct 2024 - Nov 2024', bullets: [ 'Built database of NGOs focused on child education and food assistance.', "Supported Zomato's feeding initiatives to reduce food waste and reach needy children." ] }, { role: 'African Refugees & Migrants Aid (ARMA) — Research', org: 'Africa', date: 'Aug 2024 - Oct 2024', bullets: [ 'Prepared strategic fundraising report and researched 500+ funding sources.' ] } ], projects: [ { title: 'Interactive Dashboards (Excel / Power BI)', desc: 'Analyzed e-commerce sales, financial transactions and job market trends. Built DAX calculations and advanced visualizations to derive insights.' } ], roles: [ { title: 'Consulting Director', org: '180 Degrees Consulting, VNIT', date: 'May 2025 - Present' }, { title: 'Marketing & Operations Manager', org: 'Entrepreneurship Cell, VNIT', date: 'Aug 2024 - Apr 2025' } ], skills: [ { name: 'Microsoft Excel', level: 0.8 }, { name: 'Python', level: 0.7 }, { name: 'Power BI', level: 0.75 }, { name: 'SEO', level: 0.65 }, { name: 'AI & ML (Basics)', level: 0.5 }, { name: 'Canva Designing', level: 0.7 } ], achievements: [ 'Case & Key 4.0 Certification (IIM Bangalore collaboration)', '3rd place — District-Level Volleyball Championship (U14 & U16)' ] };
+
+return ( <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"> <header className="max-w-5xl mx-auto p-6 md:p-10"> <div className="flex items-center justify-between"> <div> <h1 className="text-3xl md:text-4xl font-serif tracking-tight">{data.name}</h1> <p className="mt-1 text-sm md:text-base text-neutral-600 dark:text-neutral-300">{data.title}</p> </div>
+
+<div className="flex items-center gap-3">
+        <a href="/assets/resume.pdf" download className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-400 to-blue-500 text-white rounded-2xl shadow-lg hover:opacity-90 transition">
+          <Download size={16} /> Download Resume
+        </a>
+      </div>
+    </div>
+
+    <nav className="mt-6 flex gap-4 text-sm text-neutral-600 dark:text-neutral-300">
+      <a href="#about" className="hover:underline">About</a>
+      <a href="#experience" className="hover:underline">Experience</a>
+      <a href="#projects" className="hover:underline">Projects</a>
+      <a href="#skills" className="hover:underline">Skills</a>
+      <a href="#contact" className="hover:underline">Contact</a>
+    </nav>
+  </header>
+
+  <main className="max-w-5xl mx-auto px-6 md:px-10 pb-16">
+    <section id="about" className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="md:col-span-2">
+        <div className="rounded-2xl p-6 bg-white/80 dark:bg-neutral-800/60 backdrop-blur-md shadow">
+          <h2 className="text-xl font-semibold mb-2">About</h2>
+          <p className="text-neutral-700 dark:text-neutral-200 leading-relaxed">{data.heroBlurb}</p>
+
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div className="text-sm">
+              <p className="text-neutral-500 text-xs">Contact</p>
+              <p className="font-medium">{data.contact}</p>
+            </div>
+            <div className="text-sm">
+              <p className="text-neutral-500 text-xs">Email</p>
+              <p className="font-medium break-all">{data.email}</p>
+            </div>
+            <div className="text-sm">
+              <p className="text-neutral-500 text-xs">LinkedIn</p>
+              <p className="font-medium"><a href={data.linkedin} className="underline">Profile</a></p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.aside initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.15 }} className="flex flex-col items-center gap-4">
+        <div className="w-44 h-44 rounded-xl overflow-hidden bg-neutral-200 dark:bg-neutral-700 shadow-lg">
+          {/* Replace with your photo at public/assets/photo.jpg */}
+          <img src="/assets/photo.jpg" alt="Profile" className="w-full h-full object-cover" />
+        </div>
+
+        <div className="w-full bg-white/80 dark:bg-neutral-800/60 rounded-xl p-4 text-center shadow">
+          <p className="text-sm text-neutral-500">Open to internships & projects</p>
+          <div className="mt-3 flex justify-center gap-3">
+            <a href={`mailto:${data.email}`} className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-neutral-200 dark:border-neutral-700 text-sm">
+              <Mail size={14} /> Email
+            </a>
+            <a href={data.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-neutral-200 dark:border-neutral-700 text-sm">
+              <Linkedin size={14} /> LinkedIn
+            </a>
+          </div>
+        </div>
+      </motion.aside>
+    </section>
+
+    <section id="experience" className="mt-10">
+      <h3 className="text-2xl font-semibold mb-4">Experience</h3>
+      <div className="space-y-6">
+        {data.experiences.map((exp, idx) => (
+          <motion.article key={idx} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05 * idx }} className="p-5 rounded-xl bg-white/80 dark:bg-neutral-800/60 shadow">
+            <div className="flex justify-between items-start">
+              <div>
+                <h4 className="text-lg font-medium">{exp.role}</h4>
+                <p className="text-sm text-neutral-500">{exp.org}</p>
+              </div>
+              <div className="text-sm text-neutral-500">{exp.date}</div>
+            </div>
+
+            <ul className="mt-3 list-disc list-inside text-neutral-700 dark:text-neutral-200">
+              {exp.bullets.map((b, i) => (
+                <li key={i} className="py-1">{b}</li>
+              ))}
+            </ul>
+          </motion.article>
+        ))}
+      </div>
+    </section>
+
+    <section id="projects" className="mt-10">
+      <h3 className="text-2xl font-semibold mb-4">Projects</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {data.projects.map((p, i) => (
+          <motion.div key={i} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 * i }} className="rounded-xl p-5 bg-white/80 dark:bg-neutral-800/60 shadow">
+            <h4 className="font-semibold">{p.title}</h4>
+            <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-200">{p.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+
+    <section id="skills" className="mt-10">
+      <h3 className="text-2xl font-semibold mb-4">Skills</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {data.skills.map((s, i) => (
+          <div key={i} className="p-4 rounded-lg bg-white/80 dark:bg-neutral-800/60 shadow">
+            <div className="flex justify-between items-center">
+              <p className="font-medium">{s.name}</p>
+              <p className="text-sm text-neutral-500">{Math.round(s.level * 100)}%</p>
+            </div>
+
+            <div className="mt-3 w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-3 overflow-hidden">
+              <motion.div initial={{ width: 0 }} animate={{ width: `${s.level * 100}%` }} transition={{ duration: 0.8 }} className="h-3 rounded-full bg-gradient-to-r from-teal-400 to-blue-500" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="roles" className="mt-10">
+      <h3 className="text-2xl font-semibold mb-4">Positions of Responsibility</h3>
+      <div className="space-y-4">
+        {data.roles.map((r, i) => (
+          <div key={i} className="p-4 rounded-lg bg-white/80 dark:bg-neutral-800/60 shadow">
+            <div className="flex justify-between">
+              <div>
+                <p className="font-medium">{r.title}</p>
+                <p className="text-sm text-neutral-500">{r.org}</p>
+              </div>
+              <div className="text-sm text-neutral-500">{r.date}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="achievements" className="mt-10">
+      <h3 className="text-2xl font-semibold mb-4">Achievements</h3>
+      <ul className="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-200">
+        {data.achievements.map((a, i) => (
+          <li key={i}>{a}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="contact" className="mt-12">
+      <h3 className="text-2xl font-semibold mb-4">Contact</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="p-6 rounded-xl bg-white/80 dark:bg-neutral-800/60 shadow">
+          <p className="text-sm text-neutral-500">Email</p>
+          <p className="font-medium">{data.email}</p>
+
+          <p className="mt-4 text-sm text-neutral-500">Phone</p>
+          <p className="font-medium">{data.contact}</p>
+
+          <p className="mt-4 text-sm text-neutral-500">LinkedIn</p>
+          <a href={data.linkedin} className="underline">Profile</a>
+        </div>
+
+        <motion.form initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="p-6 rounded-xl bg-white/80 dark:bg-neutral-800/60 shadow">
+          <label className="text-sm text-neutral-500">Message</label>
+          <textarea rows={5} className="w-full mt-2 p-3 rounded-lg bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700" placeholder="Say hi or request a PDF/portfolio..."></textarea>
+
+          <div className="mt-4 flex gap-2">
+            <input type="text" placeholder="Your name" className="flex-1 p-3 rounded-lg bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700" />
+            <input type="email" placeholder="Your email" className="w-60 p-3 rounded-lg bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700" />
+          </div>
+
+          <button type="button" className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-teal-400 to-blue-500 text-white shadow">
+            <SendIcon /> Send Message
+          </button>
+        </motion.form>
+      </div>
+    </section>
+  </main>
+
+  <footer className="border-t border-neutral-200 dark:border-neutral-800 py-6">
+    <div className="max-w-5xl mx-auto px-6 md:px-10 flex justify-between items-center text-sm text-neutral-500">
+      <div>© {new Date().getFullYear()} {data.name}. All rights reserved.</div>
+      <div className="flex items-center gap-4">
+        <a href={`mailto:${data.email}`} className="flex items-center gap-2 hover:underline"><Mail size={14} /> {data.email}</a>
+        <a href={data.linkedin} className="flex items-center gap-2 hover:underline"><Linkedin size={14} /> LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+); }
+
+// Small inline icon used in the contact form button function SendIcon() { return ( <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /> <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /> </svg> ); }
+
